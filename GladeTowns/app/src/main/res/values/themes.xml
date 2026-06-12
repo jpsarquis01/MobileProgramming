@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash theme hands off to Compose theming inside MainActivity. -->
+    <style name="Theme.GladeTowns.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#F4EFE6</item>
+        <item name="postSplashScreenTheme">@android:style/Theme.Material.Light.NoActionBar</item>
+    </style>
+</resources>

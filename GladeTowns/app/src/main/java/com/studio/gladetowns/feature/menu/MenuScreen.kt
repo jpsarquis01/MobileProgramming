@@ -1,0 +1,74 @@
+package com.studio.gladetowns.feature.menu
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.studio.gladetowns.core.ui.components.ChalkButton
+
+@Composable
+fun MenuScreen(
+    onPlay: () -> Unit,
+    onContinue: (String) -> Unit,
+    onDioramas: () -> Unit,
+    viewModel: MenuViewModel = hiltViewModel(),
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+    Scaffold { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(horizontal = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Text("Glade Towns", style = MaterialTheme.typography.displayMedium)
+            Text(
+                "draw a little world",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
+            )
+            Spacer(Modifier.height(48.dp))
+
+            Column(
+                modifier = Modifier.widthIn(max = 360.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+            ) {
+                ChalkButton(text = "Play", onClick = onPlay)
+
+                if (state.lastDraftId != null) {
+                    ChalkButton(
+                        text = "Continue \u201C${state.lastDraftName}\u201D",
+                        onClick = { onContinue(state.lastDraftId!!) },
+                        container = MaterialTheme.colorScheme.secondary,
+                    )
+                }
+
+                ChalkButton(
+                    text = if (state.dioramaCount > 0) {
+                        "Dioramas (${state.dioramaCount})"
+                    } else {
+                        "Dioramas"
+                    },
+                    onClick = onDioramas,
+                    container = MaterialTheme.colorScheme.primaryContainer,
+                )
+            }
+        }
+    }
+}
