@@ -3,6 +3,7 @@ package com.studio.gladetowns;
 import com.studio.gladetowns.core.data.di.DatabaseModule;
 import com.studio.gladetowns.core.data.di.RepositoryModule;
 import com.studio.gladetowns.core.engine.EngineModule;
+import com.studio.gladetowns.feature.explore.ExploreViewModel_HiltModules;
 import com.studio.gladetowns.feature.gallery.GalleryViewModel_HiltModules;
 import com.studio.gladetowns.feature.menu.MenuViewModel_HiltModules;
 import com.studio.gladetowns.feature.play.PlayViewModel_HiltModules;
@@ -159,6 +160,7 @@ public final class GladeTownsApp_HiltComponents {
 
   @Subcomponent(
       modules = {
+          ExploreViewModel_HiltModules.KeyModule.class,
           GalleryViewModel_HiltModules.KeyModule.class,
           ActivityCBuilderModule.class,
           ViewModelCBuilderModule.class,
@@ -201,6 +203,7 @@ public final class GladeTownsApp_HiltComponents {
 
   @Subcomponent(
       modules = {
+          ExploreViewModel_HiltModules.BindsModule.class,
           GalleryViewModel_HiltModules.BindsModule.class,
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           MenuViewModel_HiltModules.BindsModule.class,

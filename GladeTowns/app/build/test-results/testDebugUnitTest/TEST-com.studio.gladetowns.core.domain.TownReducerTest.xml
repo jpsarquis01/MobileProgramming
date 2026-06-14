@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.studio.gladetowns.core.domain.TownReducerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-06-14T16:50:40.200Z" hostname="DESKTOP-3FJD2OV" time="0.008">
+<testsuite name="com.studio.gladetowns.core.domain.TownReducerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-06-14T17:26:00.022Z" hostname="DESKTOP-3FJD2OV" time="0.009">
   <properties/>
-  <testcase name="replay is order independent because commands sort by seq" classname="com.studio.gladetowns.core.domain.TownReducerTest" time="0.007"/>
+  <testcase name="replay is order independent because commands sort by seq" classname="com.studio.gladetowns.core.domain.TownReducerTest" time="0.008"/>
   <testcase name="reroll only touches the targeted structure" classname="com.studio.gladetowns.core.domain.TownReducerTest" time="0.001"/>
   <testcase name="place then demolish leaves an empty town" classname="com.studio.gladetowns.core.domain.TownReducerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

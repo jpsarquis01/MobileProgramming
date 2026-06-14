@@ -41,6 +41,8 @@ public final class DioramaDao_Impl implements DioramaDao {
 
   private final SharedSQLiteStatement __preparedStmtOfTouch;
 
+  private final SharedSQLiteStatement __preparedStmtOfSeal;
+
   private final SharedSQLiteStatement __preparedStmtOfSoftDelete;
 
   private final SharedSQLiteStatement __preparedStmtOfPurgeExpired;
@@ -96,6 +98,14 @@ public final class DioramaDao_Impl implements DioramaDao {
       @NonNull
       public String createQuery() {
         final String _query = "UPDATE diorama SET updated_at = ?, structure_count = ? WHERE id = ?";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfSeal = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE diorama SET status = 'SEALED', sealed_at = ?, updated_at = ? WHERE id = ?";
         return _query;
       }
     };
@@ -190,6 +200,36 @@ public final class DioramaDao_Impl implements DioramaDao {
           }
         } finally {
           __preparedStmtOfTouch.release(_stmt);
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object seal(final String id, final long now,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfSeal.acquire();
+        int _argIndex = 1;
+        _stmt.bindLong(_argIndex, now);
+        _argIndex = 2;
+        _stmt.bindLong(_argIndex, now);
+        _argIndex = 3;
+        _stmt.bindString(_argIndex, id);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfSeal.release(_stmt);
         }
       }
     }, $completion);

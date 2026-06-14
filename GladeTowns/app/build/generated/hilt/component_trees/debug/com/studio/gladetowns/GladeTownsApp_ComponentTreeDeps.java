@@ -22,6 +22,8 @@ import hilt_aggregated_deps._com_studio_gladetowns_MainActivity_GeneratedInjecto
 import hilt_aggregated_deps._com_studio_gladetowns_core_data_di_DatabaseModule;
 import hilt_aggregated_deps._com_studio_gladetowns_core_data_di_RepositoryModule;
 import hilt_aggregated_deps._com_studio_gladetowns_core_engine_EngineModule;
+import hilt_aggregated_deps._com_studio_gladetowns_feature_explore_ExploreViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_studio_gladetowns_feature_explore_ExploreViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_studio_gladetowns_feature_gallery_GalleryViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_studio_gladetowns_feature_gallery_GalleryViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_studio_gladetowns_feature_menu_MenuViewModel_HiltModules_BindsModule;
@@ -73,6 +75,8 @@ import hilt_aggregated_deps._dagger_hilt_android_internal_modules_HiltWrapper_Ac
         _com_studio_gladetowns_core_data_di_DatabaseModule.class,
         _com_studio_gladetowns_core_data_di_RepositoryModule.class,
         _com_studio_gladetowns_core_engine_EngineModule.class,
+        _com_studio_gladetowns_feature_explore_ExploreViewModel_HiltModules_BindsModule.class,
+        _com_studio_gladetowns_feature_explore_ExploreViewModel_HiltModules_KeyModule.class,
         _com_studio_gladetowns_feature_gallery_GalleryViewModel_HiltModules_BindsModule.class,
         _com_studio_gladetowns_feature_gallery_GalleryViewModel_HiltModules_KeyModule.class,
         _com_studio_gladetowns_feature_menu_MenuViewModel_HiltModules_BindsModule.class,

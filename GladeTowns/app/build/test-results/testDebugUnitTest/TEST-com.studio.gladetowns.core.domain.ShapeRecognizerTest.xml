@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.studio.gladetowns.core.domain.ShapeRecognizerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-06-14T16:50:40.105Z" hostname="DESKTOP-3FJD2OV" time="0.033">
+<testsuite name="com.studio.gladetowns.core.domain.ShapeRecognizerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-06-14T17:25:59.997Z" hostname="DESKTOP-3FJD2OV" time="0.009">
   <properties/>
-  <testcase name="triangle is recognized as triangle" classname="com.studio.gladetowns.core.domain.ShapeRecognizerTest" time="0.03"/>
+  <testcase name="triangle is recognized as triangle" classname="com.studio.gladetowns.core.domain.ShapeRecognizerTest" time="0.006"/>
   <testcase name="square is recognized as rectangle" classname="com.studio.gladetowns.core.domain.ShapeRecognizerTest" time="0.001"/>
   <testcase name="circle is recognized as circle" classname="com.studio.gladetowns.core.domain.ShapeRecognizerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

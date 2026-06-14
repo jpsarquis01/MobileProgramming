@@ -21,9 +21,13 @@ import com.studio.gladetowns.core.domain.usecase.CreateTownUseCase;
 import com.studio.gladetowns.core.domain.usecase.DeleteDioramaUseCase;
 import com.studio.gladetowns.core.domain.usecase.DrawShapeUseCase;
 import com.studio.gladetowns.core.domain.usecase.ListDioramasUseCase;
+import com.studio.gladetowns.core.domain.usecase.LoadTownLayoutUseCase;
 import com.studio.gladetowns.core.domain.usecase.LoadTownUseCase;
 import com.studio.gladetowns.core.domain.usecase.RenameTownUseCase;
+import com.studio.gladetowns.core.domain.usecase.SealTownUseCase;
 import com.studio.gladetowns.core.engine.PlaceholderEngineController;
+import com.studio.gladetowns.feature.explore.ExploreViewModel;
+import com.studio.gladetowns.feature.explore.ExploreViewModel_HiltModules;
 import com.studio.gladetowns.feature.gallery.GalleryViewModel;
 import com.studio.gladetowns.feature.gallery.GalleryViewModel_HiltModules;
 import com.studio.gladetowns.feature.menu.MenuViewModel;
@@ -392,7 +396,7 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
 
     @Override
     public Map<Class<?>, Boolean> getViewModelKeys() {
-      return LazyClassKeyMap.<Boolean>of(MapBuilder.<String, Boolean>newMapBuilder(3).put(LazyClassKeyProvider.com_studio_gladetowns_feature_gallery_GalleryViewModel, GalleryViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_studio_gladetowns_feature_menu_MenuViewModel, MenuViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_studio_gladetowns_feature_play_PlayViewModel, PlayViewModel_HiltModules.KeyModule.provide()).build());
+      return LazyClassKeyMap.<Boolean>of(MapBuilder.<String, Boolean>newMapBuilder(4).put(LazyClassKeyProvider.com_studio_gladetowns_feature_explore_ExploreViewModel, ExploreViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_studio_gladetowns_feature_gallery_GalleryViewModel, GalleryViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_studio_gladetowns_feature_menu_MenuViewModel, MenuViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_studio_gladetowns_feature_play_PlayViewModel, PlayViewModel_HiltModules.KeyModule.provide()).build());
     }
 
     @Override
@@ -412,20 +416,25 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_studio_gladetowns_feature_menu_MenuViewModel = "com.studio.gladetowns.feature.menu.MenuViewModel";
-
-      static String com_studio_gladetowns_feature_gallery_GalleryViewModel = "com.studio.gladetowns.feature.gallery.GalleryViewModel";
+      static String com_studio_gladetowns_feature_explore_ExploreViewModel = "com.studio.gladetowns.feature.explore.ExploreViewModel";
 
       static String com_studio_gladetowns_feature_play_PlayViewModel = "com.studio.gladetowns.feature.play.PlayViewModel";
 
+      static String com_studio_gladetowns_feature_gallery_GalleryViewModel = "com.studio.gladetowns.feature.gallery.GalleryViewModel";
+
+      static String com_studio_gladetowns_feature_menu_MenuViewModel = "com.studio.gladetowns.feature.menu.MenuViewModel";
+
       @KeepFieldType
-      MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
+      ExploreViewModel com_studio_gladetowns_feature_explore_ExploreViewModel2;
+
+      @KeepFieldType
+      PlayViewModel com_studio_gladetowns_feature_play_PlayViewModel2;
 
       @KeepFieldType
       GalleryViewModel com_studio_gladetowns_feature_gallery_GalleryViewModel2;
 
       @KeepFieldType
-      PlayViewModel com_studio_gladetowns_feature_play_PlayViewModel2;
+      MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
     }
   }
 
@@ -437,6 +446,8 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
     private final ActivityRetainedCImpl activityRetainedCImpl;
 
     private final ViewModelCImpl viewModelCImpl = this;
+
+    private Provider<ExploreViewModel> exploreViewModelProvider;
 
     private Provider<GalleryViewModel> galleryViewModelProvider;
 
@@ -452,6 +463,10 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
       this.savedStateHandle = savedStateHandleParam;
       initialize(savedStateHandleParam, viewModelLifecycleParam);
 
+    }
+
+    private LoadTownLayoutUseCase loadTownLayoutUseCase() {
+      return new LoadTownLayoutUseCase(singletonCImpl.dioramaRepositoryImplProvider.get(), singletonCImpl.townRepositoryImplProvider.get());
     }
 
     private ListDioramasUseCase listDioramasUseCase() {
@@ -474,17 +489,22 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
       return new RenameTownUseCase(singletonCImpl.dioramaRepositoryImplProvider.get());
     }
 
+    private SealTownUseCase sealTownUseCase() {
+      return new SealTownUseCase(singletonCImpl.dioramaRepositoryImplProvider.get());
+    }
+
     @SuppressWarnings("unchecked")
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
-      this.galleryViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
-      this.menuViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
-      this.playViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
+      this.exploreViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
+      this.galleryViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.menuViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
+      this.playViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 3);
     }
 
     @Override
     public Map<Class<?>, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(3).put(LazyClassKeyProvider.com_studio_gladetowns_feature_gallery_GalleryViewModel, ((Provider) galleryViewModelProvider)).put(LazyClassKeyProvider.com_studio_gladetowns_feature_menu_MenuViewModel, ((Provider) menuViewModelProvider)).put(LazyClassKeyProvider.com_studio_gladetowns_feature_play_PlayViewModel, ((Provider) playViewModelProvider)).build());
+      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(4).put(LazyClassKeyProvider.com_studio_gladetowns_feature_explore_ExploreViewModel, ((Provider) exploreViewModelProvider)).put(LazyClassKeyProvider.com_studio_gladetowns_feature_gallery_GalleryViewModel, ((Provider) galleryViewModelProvider)).put(LazyClassKeyProvider.com_studio_gladetowns_feature_menu_MenuViewModel, ((Provider) menuViewModelProvider)).put(LazyClassKeyProvider.com_studio_gladetowns_feature_play_PlayViewModel, ((Provider) playViewModelProvider)).build());
     }
 
     @Override
@@ -498,6 +518,8 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
 
       static String com_studio_gladetowns_feature_menu_MenuViewModel = "com.studio.gladetowns.feature.menu.MenuViewModel";
 
+      static String com_studio_gladetowns_feature_explore_ExploreViewModel = "com.studio.gladetowns.feature.explore.ExploreViewModel";
+
       static String com_studio_gladetowns_feature_play_PlayViewModel = "com.studio.gladetowns.feature.play.PlayViewModel";
 
       @KeepFieldType
@@ -505,6 +527,9 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
 
       @KeepFieldType
       MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
+
+      @KeepFieldType
+      ExploreViewModel com_studio_gladetowns_feature_explore_ExploreViewModel2;
 
       @KeepFieldType
       PlayViewModel com_studio_gladetowns_feature_play_PlayViewModel2;
@@ -531,14 +556,17 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
       @Override
       public T get() {
         switch (id) {
-          case 0: // com.studio.gladetowns.feature.gallery.GalleryViewModel 
-          return (T) new GalleryViewModel(viewModelCImpl.listDioramasUseCase(), viewModelCImpl.deleteDioramaUseCase());
+          case 0: // com.studio.gladetowns.feature.explore.ExploreViewModel 
+          return (T) new ExploreViewModel(viewModelCImpl.savedStateHandle, viewModelCImpl.loadTownLayoutUseCase());
 
-          case 1: // com.studio.gladetowns.feature.menu.MenuViewModel 
+          case 1: // com.studio.gladetowns.feature.gallery.GalleryViewModel 
+          return (T) new GalleryViewModel(viewModelCImpl.listDioramasUseCase(), viewModelCImpl.deleteDioramaUseCase(), viewModelCImpl.loadTownLayoutUseCase());
+
+          case 2: // com.studio.gladetowns.feature.menu.MenuViewModel 
           return (T) new MenuViewModel(viewModelCImpl.listDioramasUseCase(), singletonCImpl.dioramaRepositoryImplProvider.get());
 
-          case 2: // com.studio.gladetowns.feature.play.PlayViewModel 
-          return (T) new PlayViewModel(viewModelCImpl.savedStateHandle, viewModelCImpl.createTownUseCase(), viewModelCImpl.loadTownUseCase(), viewModelCImpl.renameTownUseCase(), new DrawShapeUseCase(), singletonCImpl.townRepositoryImplProvider.get(), singletonCImpl.placeholderEngineControllerProvider.get());
+          case 3: // com.studio.gladetowns.feature.play.PlayViewModel 
+          return (T) new PlayViewModel(viewModelCImpl.savedStateHandle, viewModelCImpl.createTownUseCase(), viewModelCImpl.loadTownUseCase(), viewModelCImpl.renameTownUseCase(), viewModelCImpl.sealTownUseCase(), new DrawShapeUseCase(), singletonCImpl.townRepositoryImplProvider.get(), singletonCImpl.placeholderEngineControllerProvider.get());
 
           default: throw new AssertionError(id);
         }
