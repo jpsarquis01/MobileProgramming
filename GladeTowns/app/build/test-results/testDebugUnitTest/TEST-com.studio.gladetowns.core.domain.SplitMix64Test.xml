@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.studio.gladetowns.core.domain.SplitMix64Test" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-06-14T16:50:40.192Z" hostname="DESKTOP-3FJD2OV" time="0.001">
+  <properties/>
+  <testcase name="same inputs always derive the same child seed" classname="com.studio.gladetowns.core.domain.SplitMix64Test" time="0.001"/>
+  <testcase name="labelled children are stable" classname="com.studio.gladetowns.core.domain.SplitMix64Test" time="0.0"/>
+  <testcase name="golden derivation values are frozen" classname="com.studio.gladetowns.core.domain.SplitMix64Test" time="0.0"/>
+  <testcase name="sibling indices produce different seeds" classname="com.studio.gladetowns.core.domain.SplitMix64Test" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

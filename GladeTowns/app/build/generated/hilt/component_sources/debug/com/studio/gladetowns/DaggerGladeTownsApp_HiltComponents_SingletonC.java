@@ -19,6 +19,7 @@ import com.studio.gladetowns.core.data.repo.DioramaRepositoryImpl;
 import com.studio.gladetowns.core.data.repo.TownRepositoryImpl;
 import com.studio.gladetowns.core.domain.usecase.CreateTownUseCase;
 import com.studio.gladetowns.core.domain.usecase.DeleteDioramaUseCase;
+import com.studio.gladetowns.core.domain.usecase.DrawShapeUseCase;
 import com.studio.gladetowns.core.domain.usecase.ListDioramasUseCase;
 import com.studio.gladetowns.core.domain.usecase.LoadTownUseCase;
 import com.studio.gladetowns.core.domain.usecase.RenameTownUseCase;
@@ -411,17 +412,17 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_studio_gladetowns_feature_gallery_GalleryViewModel = "com.studio.gladetowns.feature.gallery.GalleryViewModel";
-
       static String com_studio_gladetowns_feature_menu_MenuViewModel = "com.studio.gladetowns.feature.menu.MenuViewModel";
+
+      static String com_studio_gladetowns_feature_gallery_GalleryViewModel = "com.studio.gladetowns.feature.gallery.GalleryViewModel";
 
       static String com_studio_gladetowns_feature_play_PlayViewModel = "com.studio.gladetowns.feature.play.PlayViewModel";
 
       @KeepFieldType
-      GalleryViewModel com_studio_gladetowns_feature_gallery_GalleryViewModel2;
+      MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
 
       @KeepFieldType
-      MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
+      GalleryViewModel com_studio_gladetowns_feature_gallery_GalleryViewModel2;
 
       @KeepFieldType
       PlayViewModel com_studio_gladetowns_feature_play_PlayViewModel2;
@@ -537,7 +538,7 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
           return (T) new MenuViewModel(viewModelCImpl.listDioramasUseCase(), singletonCImpl.dioramaRepositoryImplProvider.get());
 
           case 2: // com.studio.gladetowns.feature.play.PlayViewModel 
-          return (T) new PlayViewModel(viewModelCImpl.savedStateHandle, viewModelCImpl.createTownUseCase(), viewModelCImpl.loadTownUseCase(), viewModelCImpl.renameTownUseCase(), singletonCImpl.placeholderEngineControllerProvider.get());
+          return (T) new PlayViewModel(viewModelCImpl.savedStateHandle, viewModelCImpl.createTownUseCase(), viewModelCImpl.loadTownUseCase(), viewModelCImpl.renameTownUseCase(), new DrawShapeUseCase(), singletonCImpl.townRepositoryImplProvider.get(), singletonCImpl.placeholderEngineControllerProvider.get());
 
           default: throw new AssertionError(id);
         }

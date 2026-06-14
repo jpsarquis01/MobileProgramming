@@ -23,7 +23,6 @@
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="Glade Towns"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.GladeTowns.Splash" >
         <activity
             android:name="com.studio.gladetowns.MainActivity"

@@ -1,7 +1,9 @@
 package com.studio.gladetowns.feature.play;
 
 import androidx.lifecycle.SavedStateHandle;
+import com.studio.gladetowns.core.domain.repository.TownRepository;
 import com.studio.gladetowns.core.domain.usecase.CreateTownUseCase;
+import com.studio.gladetowns.core.domain.usecase.DrawShapeUseCase;
 import com.studio.gladetowns.core.domain.usecase.LoadTownUseCase;
 import com.studio.gladetowns.core.domain.usecase.RenameTownUseCase;
 import com.studio.gladetowns.core.engine.SceneCommandSink;
@@ -36,32 +38,40 @@ public final class PlayViewModel_Factory implements Factory<PlayViewModel> {
 
   private final Provider<RenameTownUseCase> renameTownProvider;
 
+  private final Provider<DrawShapeUseCase> drawShapeProvider;
+
+  private final Provider<TownRepository> townsProvider;
+
   private final Provider<SceneCommandSink> sceneProvider;
 
   public PlayViewModel_Factory(Provider<SavedStateHandle> savedStateHandleProvider,
       Provider<CreateTownUseCase> createTownProvider, Provider<LoadTownUseCase> loadTownProvider,
-      Provider<RenameTownUseCase> renameTownProvider, Provider<SceneCommandSink> sceneProvider) {
+      Provider<RenameTownUseCase> renameTownProvider, Provider<DrawShapeUseCase> drawShapeProvider,
+      Provider<TownRepository> townsProvider, Provider<SceneCommandSink> sceneProvider) {
     this.savedStateHandleProvider = savedStateHandleProvider;
     this.createTownProvider = createTownProvider;
     this.loadTownProvider = loadTownProvider;
     this.renameTownProvider = renameTownProvider;
+    this.drawShapeProvider = drawShapeProvider;
+    this.townsProvider = townsProvider;
     this.sceneProvider = sceneProvider;
   }
 
   @Override
   public PlayViewModel get() {
-    return newInstance(savedStateHandleProvider.get(), createTownProvider.get(), loadTownProvider.get(), renameTownProvider.get(), sceneProvider.get());
+    return newInstance(savedStateHandleProvider.get(), createTownProvider.get(), loadTownProvider.get(), renameTownProvider.get(), drawShapeProvider.get(), townsProvider.get(), sceneProvider.get());
   }
 
   public static PlayViewModel_Factory create(Provider<SavedStateHandle> savedStateHandleProvider,
       Provider<CreateTownUseCase> createTownProvider, Provider<LoadTownUseCase> loadTownProvider,
-      Provider<RenameTownUseCase> renameTownProvider, Provider<SceneCommandSink> sceneProvider) {
-    return new PlayViewModel_Factory(savedStateHandleProvider, createTownProvider, loadTownProvider, renameTownProvider, sceneProvider);
+      Provider<RenameTownUseCase> renameTownProvider, Provider<DrawShapeUseCase> drawShapeProvider,
+      Provider<TownRepository> townsProvider, Provider<SceneCommandSink> sceneProvider) {
+    return new PlayViewModel_Factory(savedStateHandleProvider, createTownProvider, loadTownProvider, renameTownProvider, drawShapeProvider, townsProvider, sceneProvider);
   }
 
   public static PlayViewModel newInstance(SavedStateHandle savedStateHandle,
       CreateTownUseCase createTown, LoadTownUseCase loadTown, RenameTownUseCase renameTown,
-      SceneCommandSink scene) {
-    return new PlayViewModel(savedStateHandle, createTown, loadTown, renameTown, scene);
+      DrawShapeUseCase drawShape, TownRepository towns, SceneCommandSink scene) {
+    return new PlayViewModel(savedStateHandle, createTown, loadTown, renameTown, drawShape, towns, scene);
   }
 }

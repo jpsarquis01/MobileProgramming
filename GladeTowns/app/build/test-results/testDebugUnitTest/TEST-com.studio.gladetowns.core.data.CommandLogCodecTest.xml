@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.studio.gladetowns.core.data.CommandLogCodecTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-06-14T16:50:40.140Z" hostname="DESKTOP-3FJD2OV" time="0.046">
+  <properties/>
+  <testcase name="bad magic is rejected" classname="com.studio.gladetowns.core.data.CommandLogCodecTest" time="0.038"/>
+  <testcase name="corrupted payload fails CRC instead of half-deserializing" classname="com.studio.gladetowns.core.data.CommandLogCodecTest" time="0.001"/>
+  <testcase name="round trip preserves the full polymorphic command list" classname="com.studio.gladetowns.core.data.CommandLogCodecTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
