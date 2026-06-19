@@ -6,6 +6,7 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Undo
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.CircularProgressIndicator
@@ -31,7 +33,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -45,10 +49,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.studio.gladetowns.core.domain.model.shape.RawStroke
 import com.studio.gladetowns.core.domain.model.shape.StrokePoint
+import com.studio.gladetowns.core.domain.model.structure.Footprint
 import com.studio.gladetowns.core.domain.model.structure.RoomClassifier
 import com.studio.gladetowns.core.domain.model.town.GridSize
 import com.studio.gladetowns.core.ui.components.ChalkButton
 import com.studio.gladetowns.core.ui.components.EmptyState
+import com.studio.gladetowns.core.ui.components.RoomGuideDialog
 import com.studio.gladetowns.core.ui.render.AtmosphereOverlay
 import com.studio.gladetowns.core.ui.render.GridMapping
 import com.studio.gladetowns.core.ui.render.GridMappingHolder
@@ -56,6 +62,10 @@ import com.studio.gladetowns.core.ui.render.TimeOfDayBar
 import com.studio.gladetowns.core.ui.render.TownRoomModel
 import com.studio.gladetowns.core.ui.render.drawRooms
 import com.studio.gladetowns.core.ui.render.palette
+import kotlin.math.abs
+
+/** What a drag draws: a room shape, or a connecting hallway line. */
+private enum class BuildMode { ROOM, HALLWAY }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,6 +75,8 @@ fun PlayScreen(
     viewModel: PlayViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    var showGuide by remember { mutableStateOf(false) }
+    if (showGuide) RoomGuideDialog(onDismiss = { showGuide = false })
 
     Scaffold(
         topBar = {
@@ -84,6 +96,9 @@ fun PlayScreen(
                     }
                 },
                 actions = {
+                    IconButton(onClick = { showGuide = true }) {
+                        Icon(Icons.Filled.Info, contentDescription = "How rooms work")
+                    }
                     (state as? PlayUiState.Building)?.let { b ->
                         IconButton(onClick = { viewModel.onEvent(PlayEvent.Undo) }, enabled = b.canUndo) {
                             Icon(Icons.AutoMirrored.Filled.Undo, contentDescription = "Undo")
@@ -132,7 +147,7 @@ private fun SetupContent(state: PlayUiState.Setup, onEvent: (PlayEvent) -> Unit)
                     FilterChip(
                         selected = state.selectedSize == size,
                         onClick = { onEvent(PlayEvent.SelectGridSize(size)) },
-                        label = { Text("${size.cells} \u00D7 ${size.cells} \u2014 ${size.flavor()}") },
+                        label = { Text("${size.cells} × ${size.cells} — ${size.flavor()}") },
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
@@ -150,6 +165,7 @@ private fun GridSize.flavor(): String = when (this) {
 
 // --- Build mode: interactive room canvas ------------------------------------
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) -> Unit) {
     // SnapshotStateList: appends are amortised O(1) and invalidate only the
@@ -157,6 +173,7 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
     val stroke = remember { mutableStateListOf<Offset>() }
     val mapping = remember { GridMappingHolder() }
     val palette = state.timeOfDay.palette()
+    var buildMode by remember { mutableStateOf(BuildMode.ROOM) }
     // Wall/room analysis runs once per layout change, off the per-frame path.
     val model = remember(state.layout) { TownRoomModel.from(state.layout) }
 
@@ -174,13 +191,21 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
             modifier = Modifier
                 .fillMaxSize()
                 .padding(12.dp)
-                .pointerInput(state.gridCells) {
+                // Re-key on buildMode so the drag handler always sees the live mode.
+                .pointerInput(state.gridCells, buildMode) {
                     detectDragGestures(
                         onDragStart = { stroke.clear(); stroke.add(it) },
                         onDrag = { change, _ -> stroke.add(change.position) },
                         onDragEnd = {
                             mapping.value?.let { m ->
-                                if (stroke.size >= 3) onEvent(PlayEvent.StrokeFinished(m.toRawStroke(stroke)))
+                                when (buildMode) {
+                                    BuildMode.ROOM ->
+                                        if (stroke.size >= 3) onEvent(PlayEvent.StrokeFinished(m.toRawStroke(stroke)))
+                                    BuildMode.HALLWAY -> {
+                                        val cells = m.toPathCells(stroke)
+                                        if (cells.isNotEmpty()) onEvent(PlayEvent.PathDrawn(cells))
+                                    }
+                                }
                             }
                             stroke.clear()
                         },
@@ -197,7 +222,7 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
             val m = GridMapping(state.gridCells, size.width, size.height)
             mapping.value = m
             drawRooms(model, m, palette)
-            drawStroke(stroke)
+            drawStroke(stroke, buildMode)
         }
 
         // Animated lighting / atmosphere (isolated so it never re-runs drawRooms).
@@ -223,9 +248,26 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FilterChip(
+                    selected = buildMode == BuildMode.ROOM,
+                    onClick = { buildMode = BuildMode.ROOM },
+                    label = { Text("Room") },
+                )
+                FilterChip(
+                    selected = buildMode == BuildMode.HALLWAY,
+                    onClick = { buildMode = BuildMode.HALLWAY },
+                    label = { Text("Hallway") },
+                )
+            }
             TimeOfDayBar(selected = state.timeOfDay, onSelect = { onEvent(PlayEvent.ChangeTime(it)) })
             Text(
-                text = "${state.structureCount} rooms \u00B7 draw a shape \u00B7 tap to re-roll \u00B7 hold to remove",
+                text = when (buildMode) {
+                    BuildMode.ROOM ->
+                        "${state.structureCount} rooms · draw a shape · tap to re-roll · hold to remove"
+                    BuildMode.HALLWAY ->
+                        "Hallway · drag a line to connect rooms"
+                },
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.55f),
             )
@@ -238,11 +280,52 @@ private fun GridMapping.toRawStroke(points: List<Offset>): RawStroke = RawStroke
     gridCells = cells,
 )
 
-private fun DrawScope.drawStroke(points: List<Offset>) {
+/**
+ * Rasterize a freehand line into the contiguous grid cells it crosses. Gaps
+ * between sampled finger points are filled with a Bresenham line so the hallway
+ * is unbroken even on a fast swipe.
+ */
+private fun GridMapping.toPathCells(points: List<Offset>): List<Int> {
+    val out = LinkedHashSet<Int>()
+    var prev: Pair<Int, Int>? = null
+    for (p in points) {
+        cellXY(p)?.let { cur ->
+            val (px, py) = prev ?: cur
+            line(px, py, cur.first, cur.second) { x, y -> out.add(Footprint.pack(x, y)) }
+            prev = cur
+        }
+    }
+    return out.toList()
+}
+
+private fun GridMapping.cellXY(p: Offset): Pair<Int, Int>? {
+    val cx = ((p.x - originX) / cellPx).toInt()
+    val cy = ((p.y - originY) / cellPx).toInt()
+    if (cx !in 0 until cells || cy !in 0 until cells) return null
+    return cx to cy
+}
+
+private inline fun line(x0: Int, y0: Int, x1: Int, y1: Int, plot: (Int, Int) -> Unit) {
+    var x = x0; var y = y0
+    val dx = abs(x1 - x0); val dy = -abs(y1 - y0)
+    val sx = if (x0 < x1) 1 else -1
+    val sy = if (y0 < y1) 1 else -1
+    var err = dx + dy
+    while (true) {
+        plot(x, y)
+        if (x == x1 && y == y1) break
+        val e2 = 2 * err
+        if (e2 >= dy) { err += dy; x += sx }
+        if (e2 <= dx) { err += dx; y += sy }
+    }
+}
+
+private fun DrawScope.drawStroke(points: List<Offset>, mode: BuildMode) {
     if (points.size < 2) return
     val path = Path().apply {
         moveTo(points.first().x, points.first().y)
         for (i in 1 until points.size) lineTo(points[i].x, points[i].y)
     }
-    drawPath(path, Color(0xCC5F7D52), style = Stroke(width = 6f))
+    val color = if (mode == BuildMode.HALLWAY) Color(0xCC9A8463) else Color(0xCC5F7D52)
+    drawPath(path, color, style = Stroke(width = 6f))
 }

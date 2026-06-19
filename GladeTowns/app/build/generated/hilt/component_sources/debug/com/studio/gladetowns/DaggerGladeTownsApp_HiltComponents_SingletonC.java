@@ -416,25 +416,25 @@ public final class DaggerGladeTownsApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
+      static String com_studio_gladetowns_feature_menu_MenuViewModel = "com.studio.gladetowns.feature.menu.MenuViewModel";
+
+      static String com_studio_gladetowns_feature_play_PlayViewModel = "com.studio.gladetowns.feature.play.PlayViewModel";
+
       static String com_studio_gladetowns_feature_explore_ExploreViewModel = "com.studio.gladetowns.feature.explore.ExploreViewModel";
 
       static String com_studio_gladetowns_feature_gallery_GalleryViewModel = "com.studio.gladetowns.feature.gallery.GalleryViewModel";
 
-      static String com_studio_gladetowns_feature_play_PlayViewModel = "com.studio.gladetowns.feature.play.PlayViewModel";
+      @KeepFieldType
+      MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
 
-      static String com_studio_gladetowns_feature_menu_MenuViewModel = "com.studio.gladetowns.feature.menu.MenuViewModel";
+      @KeepFieldType
+      PlayViewModel com_studio_gladetowns_feature_play_PlayViewModel2;
 
       @KeepFieldType
       ExploreViewModel com_studio_gladetowns_feature_explore_ExploreViewModel2;
 
       @KeepFieldType
       GalleryViewModel com_studio_gladetowns_feature_gallery_GalleryViewModel2;
-
-      @KeepFieldType
-      PlayViewModel com_studio_gladetowns_feature_play_PlayViewModel2;
-
-      @KeepFieldType
-      MenuViewModel com_studio_gladetowns_feature_menu_MenuViewModel2;
     }
   }
 

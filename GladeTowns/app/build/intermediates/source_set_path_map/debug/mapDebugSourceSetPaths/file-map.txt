@@ -1,66 +1,66 @@
-com.studio.gladetowns.app-pngs-0 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\build\generated\res\pngs\debug
-com.studio.gladetowns.app-resValues-1 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\build\generated\res\resValues\debug
-com.studio.gladetowns.app-updated_navigation_xml-2 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\build\generated\updated_navigation_xml\debug
-com.studio.gladetowns.app-packageDebugResources-3 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.studio.gladetowns.app-packageDebugResources-4 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.studio.gladetowns.app-debug-5 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.studio.gladetowns.app-debug-6 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\src\debug\res
-com.studio.gladetowns.app-main-7 C:\LaSalle 2Year\6th Tri\MobileProgramming\GladeTowns\app\src\main\res
-com.studio.gladetowns.app-navigation-runtime-2.8.2-8 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\0598e5da876a2d37efaa56916433b6df\transformed\navigation-runtime-2.8.2\res
-com.studio.gladetowns.app-lifecycle-runtime-compose-release-9 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\09995905693b4725698bc1a75944e5c4\transformed\lifecycle-runtime-compose-release\res
-com.studio.gladetowns.app-ui-tooling-release-10 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\13e423d40103ca5db78087df41371b7b\transformed\ui-tooling-release\res
-com.studio.gladetowns.app-fragment-1.5.1-11 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\1d03fd1a9c9371e039d88726aa9d16fa\transformed\fragment-1.5.1\res
-com.studio.gladetowns.app-ui-release-12 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\1d5bd0ef0d23153d3bcadb2baa3d643b\transformed\ui-release\res
-com.studio.gladetowns.app-lifecycle-viewmodel-release-13 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\2137e2db3033a169c25a6f95b2ead149\transformed\lifecycle-viewmodel-release\res
-com.studio.gladetowns.app-runtime-saveable-release-14 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\22dffecafc6d98f1ec7247e37544c70c\transformed\runtime-saveable-release\res
-com.studio.gladetowns.app-material-icons-extended-release-15 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\2d4ea4f4290826f12197b830c5aa2f7e\transformed\material-icons-extended-release\res
-com.studio.gladetowns.app-startup-runtime-1.1.1-16 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\30d7187002c0eb89a213530f07e1c337\transformed\startup-runtime-1.1.1\res
-com.studio.gladetowns.app-savedstate-1.2.1-17 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\368ff2858dc8c4e7daaeaa987b98dc22\transformed\savedstate-1.2.1\res
-com.studio.gladetowns.app-hilt-navigation-compose-1.2.0-18 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\3ae34ad78192b1d7ca4ba302a127dac0\transformed\hilt-navigation-compose-1.2.0\res
-com.studio.gladetowns.app-ui-graphics-release-19 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\3c9f358f01cc6eae1c218725e5c92e66\transformed\ui-graphics-release\res
-com.studio.gladetowns.app-savedstate-ktx-1.2.1-20 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\3ec434b05ddec16d5972abfe48f37b03\transformed\savedstate-ktx-1.2.1\res
-com.studio.gladetowns.app-activity-1.9.2-21 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\4280f253cf8046a4e79e43ad87f53c93\transformed\activity-1.9.2\res
-com.studio.gladetowns.app-navigation-common-ktx-2.8.2-22 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\45578188e80698f7867126908db251e6\transformed\navigation-common-ktx-2.8.2\res
-com.studio.gladetowns.app-foundation-release-23 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\4af05dc257b94ebfc5984cc8746fc812\transformed\foundation-release\res
-com.studio.gladetowns.app-activity-compose-1.9.2-24 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\4e7a703f0fdaebc38b999514c90beea8\transformed\activity-compose-1.9.2\res
-com.studio.gladetowns.app-lifecycle-livedata-core-2.8.6-25 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\5058526dbea6ab066ba13ac42995415c\transformed\lifecycle-livedata-core-2.8.6\res
-com.studio.gladetowns.app-activity-ktx-1.9.2-26 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\526442cca4e9cca817499ff544c27c26\transformed\activity-ktx-1.9.2\res
-com.studio.gladetowns.app-lifecycle-runtime-release-27 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\55e89a189448c7b9eeb52ee5d7bd8007\transformed\lifecycle-runtime-release\res
-com.studio.gladetowns.app-material-release-28 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\56904fc703afcc139d57cd5da188d85d\transformed\material-release\res
-com.studio.gladetowns.app-lifecycle-livedata-2.8.6-29 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\584c962965deb6ec6698202a55b3d857\transformed\lifecycle-livedata-2.8.6\res
-com.studio.gladetowns.app-sqlite-2.4.0-30 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\5b8715cc72019a78e6c8a5b8a0b33620\transformed\sqlite-2.4.0\res
-com.studio.gladetowns.app-core-ktx-1.13.1-31 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\620f483677eec6dac67ce9f8d7632b67\transformed\core-ktx-1.13.1\res
-com.studio.gladetowns.app-foundation-layout-release-32 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\62459240306bf194d5b856b992acc86a\transformed\foundation-layout-release\res
-com.studio.gladetowns.app-runtime-release-33 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\6be97b2743efaf3e02c8cd318555aaeb\transformed\runtime-release\res
-com.studio.gladetowns.app-ui-geometry-release-34 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\713e464c36da6960d56f30f89af6d9ca\transformed\ui-geometry-release\res
-com.studio.gladetowns.app-emoji2-1.3.0-35 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\7af9bc438b3f0d1663bbed34af997450\transformed\emoji2-1.3.0\res
-com.studio.gladetowns.app-room-ktx-2.6.1-36 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\7ea8532425da92bab6a666e142b770b9\transformed\room-ktx-2.6.1\res
-com.studio.gladetowns.app-sqlite-framework-2.4.0-37 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\838fe2144cfd2d62766adeae29797d8f\transformed\sqlite-framework-2.4.0\res
-com.studio.gladetowns.app-lifecycle-runtime-ktx-release-38 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\8dc762092a1ba332c7850c2ed7a3552d\transformed\lifecycle-runtime-ktx-release\res
-com.studio.gladetowns.app-lifecycle-livedata-core-ktx-2.8.6-39 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\8feec444daffc9b34095446ab0277b99\transformed\lifecycle-livedata-core-ktx-2.8.6\res
-com.studio.gladetowns.app-graphics-path-1.0.1-40 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\9f22cb5440a806b01dc88f88e29cce8e\transformed\graphics-path-1.0.1\res
-com.studio.gladetowns.app-material3-release-41 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\9f92a0180dfb565cfe8380c1bd55722f\transformed\material3-release\res
-com.studio.gladetowns.app-ui-tooling-preview-release-42 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\a176f52286978b8adc795cee4c362ac3\transformed\ui-tooling-preview-release\res
-com.studio.gladetowns.app-core-splashscreen-1.0.1-43 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\a8ce42f662e2420446ffa6a860b146f1\transformed\core-splashscreen-1.0.1\res
-com.studio.gladetowns.app-lifecycle-viewmodel-compose-release-44 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\ab9f8242d083f69b42de1935825d3455\transformed\lifecycle-viewmodel-compose-release\res
-com.studio.gladetowns.app-core-1.13.1-45 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\b0dbceddb6492ba2d504b1fba0f1e6d3\transformed\core-1.13.1\res
-com.studio.gladetowns.app-hilt-navigation-1.2.0-46 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\b840235b49042683bd8b1f09f9d80cbc\transformed\hilt-navigation-1.2.0\res
-com.studio.gladetowns.app-lifecycle-viewmodel-savedstate-2.8.6-47 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\badb67efdccd8f275d74fc59db3d14f0\transformed\lifecycle-viewmodel-savedstate-2.8.6\res
-com.studio.gladetowns.app-lifecycle-process-2.8.6-48 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\be41912074132c583a5fc8066b7cf85e\transformed\lifecycle-process-2.8.6\res
-com.studio.gladetowns.app-ui-util-release-49 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\c4b0be9ee09fd11b4349516357980dbd\transformed\ui-util-release\res
-com.studio.gladetowns.app-material-icons-core-release-50 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\c6ff4ba9c9ca83e87b8563ca5ff7354b\transformed\material-icons-core-release\res
-com.studio.gladetowns.app-navigation-compose-2.8.2-51 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\c7f0c1116a9aaef2ca3c17d68752228a\transformed\navigation-compose-2.8.2\res
-com.studio.gladetowns.app-animation-release-52 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\c82eba3d04350c557224d4e8ae5572e3\transformed\animation-release\res
-com.studio.gladetowns.app-room-runtime-2.6.1-53 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\c8c3d716c6c5746e470dcc84bdb98d36\transformed\room-runtime-2.6.1\res
-com.studio.gladetowns.app-annotation-experimental-1.4.1-54 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\ca4903878d0380744d3b0d9b21199d85\transformed\annotation-experimental-1.4.1\res
-com.studio.gladetowns.app-core-runtime-2.2.0-55 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\caacb0c11075afeeacdd5c934a258f35\transformed\core-runtime-2.2.0\res
-com.studio.gladetowns.app-ui-text-release-56 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\cc1b98420faa9ebd61c88f80f8074d07\transformed\ui-text-release\res
-com.studio.gladetowns.app-ui-tooling-data-release-57 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\d05a11a63321a22aea8208d9f640fa42\transformed\ui-tooling-data-release\res
-com.studio.gladetowns.app-navigation-runtime-ktx-2.8.2-58 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\d22aec90758aba2829ebabe71fbf6763\transformed\navigation-runtime-ktx-2.8.2\res
-com.studio.gladetowns.app-navigation-common-2.8.2-59 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\d273ea77a1c17faaa634deac8bb4ee76\transformed\navigation-common-2.8.2\res
-com.studio.gladetowns.app-ui-unit-release-60 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\d6f11e27e4c2ccc148657a3f568e5073\transformed\ui-unit-release\res
-com.studio.gladetowns.app-animation-core-release-61 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\da00862e322319288d0bd9183329cf04\transformed\animation-core-release\res
-com.studio.gladetowns.app-lifecycle-viewmodel-ktx-2.8.6-62 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\e0561aac6b7c749312327f5c2943534a\transformed\lifecycle-viewmodel-ktx-2.8.6\res
-com.studio.gladetowns.app-profileinstaller-1.3.1-63 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\e65bf60a12fed84bc67088928424faff\transformed\profileinstaller-1.3.1\res
-com.studio.gladetowns.app-material-ripple-release-64 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\f374245f066cb85fa085303bd764f8b7\transformed\material-ripple-release\res
-com.studio.gladetowns.app-customview-poolingcontainer-1.0.0-65 C:\Users\sarqu\.gradle\caches\9.0.0\transforms\f771590c5a19353e1f3db8dd220aa188\transformed\customview-poolingcontainer-1.0.0\res
+com.studio.gladetowns.app-navigation-runtime-2.8.2-0 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\0598e5da876a2d37efaa56916433b6df\transformed\navigation-runtime-2.8.2\res
+com.studio.gladetowns.app-lifecycle-runtime-compose-release-1 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\09995905693b4725698bc1a75944e5c4\transformed\lifecycle-runtime-compose-release\res
+com.studio.gladetowns.app-ui-tooling-release-2 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\13e423d40103ca5db78087df41371b7b\transformed\ui-tooling-release\res
+com.studio.gladetowns.app-fragment-1.5.1-3 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\1d03fd1a9c9371e039d88726aa9d16fa\transformed\fragment-1.5.1\res
+com.studio.gladetowns.app-ui-release-4 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\1d5bd0ef0d23153d3bcadb2baa3d643b\transformed\ui-release\res
+com.studio.gladetowns.app-lifecycle-viewmodel-release-5 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\2137e2db3033a169c25a6f95b2ead149\transformed\lifecycle-viewmodel-release\res
+com.studio.gladetowns.app-runtime-saveable-release-6 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\22dffecafc6d98f1ec7247e37544c70c\transformed\runtime-saveable-release\res
+com.studio.gladetowns.app-material-icons-extended-release-7 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\2d4ea4f4290826f12197b830c5aa2f7e\transformed\material-icons-extended-release\res
+com.studio.gladetowns.app-startup-runtime-1.1.1-8 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\30d7187002c0eb89a213530f07e1c337\transformed\startup-runtime-1.1.1\res
+com.studio.gladetowns.app-savedstate-1.2.1-9 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\368ff2858dc8c4e7daaeaa987b98dc22\transformed\savedstate-1.2.1\res
+com.studio.gladetowns.app-hilt-navigation-compose-1.2.0-10 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\3ae34ad78192b1d7ca4ba302a127dac0\transformed\hilt-navigation-compose-1.2.0\res
+com.studio.gladetowns.app-ui-graphics-release-11 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\3c9f358f01cc6eae1c218725e5c92e66\transformed\ui-graphics-release\res
+com.studio.gladetowns.app-savedstate-ktx-1.2.1-12 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\3ec434b05ddec16d5972abfe48f37b03\transformed\savedstate-ktx-1.2.1\res
+com.studio.gladetowns.app-activity-1.9.2-13 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\4280f253cf8046a4e79e43ad87f53c93\transformed\activity-1.9.2\res
+com.studio.gladetowns.app-navigation-common-ktx-2.8.2-14 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\45578188e80698f7867126908db251e6\transformed\navigation-common-ktx-2.8.2\res
+com.studio.gladetowns.app-foundation-release-15 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\4af05dc257b94ebfc5984cc8746fc812\transformed\foundation-release\res
+com.studio.gladetowns.app-activity-compose-1.9.2-16 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\4e7a703f0fdaebc38b999514c90beea8\transformed\activity-compose-1.9.2\res
+com.studio.gladetowns.app-lifecycle-livedata-core-2.8.6-17 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\5058526dbea6ab066ba13ac42995415c\transformed\lifecycle-livedata-core-2.8.6\res
+com.studio.gladetowns.app-activity-ktx-1.9.2-18 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\526442cca4e9cca817499ff544c27c26\transformed\activity-ktx-1.9.2\res
+com.studio.gladetowns.app-lifecycle-runtime-release-19 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\55e89a189448c7b9eeb52ee5d7bd8007\transformed\lifecycle-runtime-release\res
+com.studio.gladetowns.app-material-release-20 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\56904fc703afcc139d57cd5da188d85d\transformed\material-release\res
+com.studio.gladetowns.app-lifecycle-livedata-2.8.6-21 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\584c962965deb6ec6698202a55b3d857\transformed\lifecycle-livedata-2.8.6\res
+com.studio.gladetowns.app-sqlite-2.4.0-22 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\5b8715cc72019a78e6c8a5b8a0b33620\transformed\sqlite-2.4.0\res
+com.studio.gladetowns.app-core-ktx-1.13.1-23 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\620f483677eec6dac67ce9f8d7632b67\transformed\core-ktx-1.13.1\res
+com.studio.gladetowns.app-foundation-layout-release-24 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\62459240306bf194d5b856b992acc86a\transformed\foundation-layout-release\res
+com.studio.gladetowns.app-runtime-release-25 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\6be97b2743efaf3e02c8cd318555aaeb\transformed\runtime-release\res
+com.studio.gladetowns.app-ui-geometry-release-26 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\713e464c36da6960d56f30f89af6d9ca\transformed\ui-geometry-release\res
+com.studio.gladetowns.app-emoji2-1.3.0-27 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\7af9bc438b3f0d1663bbed34af997450\transformed\emoji2-1.3.0\res
+com.studio.gladetowns.app-room-ktx-2.6.1-28 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\7ea8532425da92bab6a666e142b770b9\transformed\room-ktx-2.6.1\res
+com.studio.gladetowns.app-sqlite-framework-2.4.0-29 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\838fe2144cfd2d62766adeae29797d8f\transformed\sqlite-framework-2.4.0\res
+com.studio.gladetowns.app-lifecycle-runtime-ktx-release-30 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\8dc762092a1ba332c7850c2ed7a3552d\transformed\lifecycle-runtime-ktx-release\res
+com.studio.gladetowns.app-lifecycle-livedata-core-ktx-2.8.6-31 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\8feec444daffc9b34095446ab0277b99\transformed\lifecycle-livedata-core-ktx-2.8.6\res
+com.studio.gladetowns.app-graphics-path-1.0.1-32 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\9f22cb5440a806b01dc88f88e29cce8e\transformed\graphics-path-1.0.1\res
+com.studio.gladetowns.app-material3-release-33 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\9f92a0180dfb565cfe8380c1bd55722f\transformed\material3-release\res
+com.studio.gladetowns.app-ui-tooling-preview-release-34 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\a176f52286978b8adc795cee4c362ac3\transformed\ui-tooling-preview-release\res
+com.studio.gladetowns.app-core-splashscreen-1.0.1-35 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\a8ce42f662e2420446ffa6a860b146f1\transformed\core-splashscreen-1.0.1\res
+com.studio.gladetowns.app-lifecycle-viewmodel-compose-release-36 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\ab9f8242d083f69b42de1935825d3455\transformed\lifecycle-viewmodel-compose-release\res
+com.studio.gladetowns.app-core-1.13.1-37 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\b0dbceddb6492ba2d504b1fba0f1e6d3\transformed\core-1.13.1\res
+com.studio.gladetowns.app-hilt-navigation-1.2.0-38 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\b840235b49042683bd8b1f09f9d80cbc\transformed\hilt-navigation-1.2.0\res
+com.studio.gladetowns.app-lifecycle-viewmodel-savedstate-2.8.6-39 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\badb67efdccd8f275d74fc59db3d14f0\transformed\lifecycle-viewmodel-savedstate-2.8.6\res
+com.studio.gladetowns.app-lifecycle-process-2.8.6-40 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\be41912074132c583a5fc8066b7cf85e\transformed\lifecycle-process-2.8.6\res
+com.studio.gladetowns.app-ui-util-release-41 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\c4b0be9ee09fd11b4349516357980dbd\transformed\ui-util-release\res
+com.studio.gladetowns.app-material-icons-core-release-42 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\c6ff4ba9c9ca83e87b8563ca5ff7354b\transformed\material-icons-core-release\res
+com.studio.gladetowns.app-navigation-compose-2.8.2-43 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\c7f0c1116a9aaef2ca3c17d68752228a\transformed\navigation-compose-2.8.2\res
+com.studio.gladetowns.app-animation-release-44 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\c82eba3d04350c557224d4e8ae5572e3\transformed\animation-release\res
+com.studio.gladetowns.app-room-runtime-2.6.1-45 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\c8c3d716c6c5746e470dcc84bdb98d36\transformed\room-runtime-2.6.1\res
+com.studio.gladetowns.app-annotation-experimental-1.4.1-46 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\ca4903878d0380744d3b0d9b21199d85\transformed\annotation-experimental-1.4.1\res
+com.studio.gladetowns.app-core-runtime-2.2.0-47 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\caacb0c11075afeeacdd5c934a258f35\transformed\core-runtime-2.2.0\res
+com.studio.gladetowns.app-ui-text-release-48 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\cc1b98420faa9ebd61c88f80f8074d07\transformed\ui-text-release\res
+com.studio.gladetowns.app-ui-tooling-data-release-49 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\d05a11a63321a22aea8208d9f640fa42\transformed\ui-tooling-data-release\res
+com.studio.gladetowns.app-navigation-runtime-ktx-2.8.2-50 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\d22aec90758aba2829ebabe71fbf6763\transformed\navigation-runtime-ktx-2.8.2\res
+com.studio.gladetowns.app-navigation-common-2.8.2-51 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\d273ea77a1c17faaa634deac8bb4ee76\transformed\navigation-common-2.8.2\res
+com.studio.gladetowns.app-ui-unit-release-52 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\d6f11e27e4c2ccc148657a3f568e5073\transformed\ui-unit-release\res
+com.studio.gladetowns.app-animation-core-release-53 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\da00862e322319288d0bd9183329cf04\transformed\animation-core-release\res
+com.studio.gladetowns.app-lifecycle-viewmodel-ktx-2.8.6-54 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\e0561aac6b7c749312327f5c2943534a\transformed\lifecycle-viewmodel-ktx-2.8.6\res
+com.studio.gladetowns.app-profileinstaller-1.3.1-55 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\e65bf60a12fed84bc67088928424faff\transformed\profileinstaller-1.3.1\res
+com.studio.gladetowns.app-material-ripple-release-56 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\f374245f066cb85fa085303bd764f8b7\transformed\material-ripple-release\res
+com.studio.gladetowns.app-customview-poolingcontainer-1.0.0-57 C:\Users\ADMIN\.gradle\caches\9.0.0\transforms\f771590c5a19353e1f3db8dd220aa188\transformed\customview-poolingcontainer-1.0.0\res
+com.studio.gladetowns.app-pngs-58 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\build\generated\res\pngs\debug
+com.studio.gladetowns.app-resValues-59 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\build\generated\res\resValues\debug
+com.studio.gladetowns.app-updated_navigation_xml-60 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\build\generated\updated_navigation_xml\debug
+com.studio.gladetowns.app-packageDebugResources-61 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.studio.gladetowns.app-packageDebugResources-62 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.studio.gladetowns.app-debug-63 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.studio.gladetowns.app-debug-64 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\src\debug\res
+com.studio.gladetowns.app-main-65 D:\LaSalle_2yr\6th Tri\MobileProgramming\GladeTowns\app\src\main\res

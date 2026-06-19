@@ -149,7 +149,7 @@ fun DrawScope.drawRooms(model: TownRoomModel, m: GridMapping, palette: TimeOfDay
         for (c in room.cells) drawFloorTile(room.type, floor, m.cellTopLeft(c.x, c.y), m.cellPx)
     }
     for (room in model.rooms) {
-        for (c in room.cells) if (c.wall) drawWallTile(m.cellTopLeft(c.x, c.y), m.cellPx)
+        for (c in room.cells) if (c.wall) drawWallTile(m.cellTopLeft(c.x, c.y), m.cellPx, c.y)
     }
 }
 
@@ -178,9 +178,16 @@ private fun DrawScope.drawFloorTile(type: RoomType, base: Color, tl: Offset, c: 
     }
 }
 
-private fun DrawScope.drawWallTile(tl: Offset, c: Float) {
+private fun DrawScope.drawWallTile(tl: Offset, c: Float, row: Int) {
     drawRect(WallBase, topLeft = tl, size = Size(c, c))
     val t = max(1f, c * 0.10f)
+    // Brick courses: a mid mortar line, plus a vertical joint offset per row
+    // (running bond) so a wall ring reads as masonry rather than a flat block.
+    val mortar = max(1f, c * 0.06f)
+    drawRect(WallShadow, topLeft = Offset(tl.x, tl.y + c * 0.5f - mortar / 2f), size = Size(c, mortar))
+    val joint = if (row % 2 == 0) tl.x + c * 0.5f else tl.x
+    drawRect(WallShadow, topLeft = Offset(joint - mortar / 2f, tl.y), size = Size(mortar, c * 0.5f))
+    drawRect(WallShadow, topLeft = Offset(tl.x + c * 0.5f - mortar / 2f, tl.y + c * 0.5f), size = Size(mortar, c * 0.5f))
     // Bevel: light top/left, dark bottom/right.
     drawRect(WallHi, topLeft = tl, size = Size(c, t))
     drawRect(WallHi, topLeft = tl, size = Size(t, c))

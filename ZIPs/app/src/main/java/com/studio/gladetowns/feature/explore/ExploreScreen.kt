@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CenterFocusStrong
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.studio.gladetowns.core.domain.model.structure.RoomClassifier
 import com.studio.gladetowns.core.domain.model.structure.StructurePlan
 import com.studio.gladetowns.core.ui.components.EmptyState
+import com.studio.gladetowns.core.ui.components.RoomGuideDialog
 import com.studio.gladetowns.core.ui.render.AtmosphereOverlay
 import com.studio.gladetowns.core.ui.render.GridMapping
 import com.studio.gladetowns.core.ui.render.GridMappingHolder
@@ -57,6 +59,8 @@ fun ExploreScreen(
     viewModel: ExploreViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    var showGuide by remember { mutableStateOf(false) }
+    if (showGuide) RoomGuideDialog(onDismiss = { showGuide = false })
 
     Scaffold(
         topBar = {
@@ -65,6 +69,11 @@ fun ExploreScreen(
                 navigationIcon = {
                     IconButton(onClick = onExit) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { showGuide = true }) {
+                        Icon(Icons.Filled.Info, contentDescription = "How rooms work")
                     }
                 },
             )
