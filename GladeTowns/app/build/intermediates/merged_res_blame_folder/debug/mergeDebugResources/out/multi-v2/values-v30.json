@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.studio.gladetowns.app-mergeDebugResources-60:/values-v30/values-v30.xml",
+            "outputFile": "com.studio.gladetowns.app-mergeDebugResources-2:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ADMIN\\.gradle\\caches\\9.0.0\\transforms\\9f92a0180dfb565cfe8380c1bd55722f\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\sarqu\\.gradle\\caches\\9.0.0\\transforms\\9f92a0180dfb565cfe8380c1bd55722f\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
