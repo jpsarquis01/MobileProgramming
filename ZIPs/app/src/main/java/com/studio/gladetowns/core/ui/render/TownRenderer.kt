@@ -93,25 +93,31 @@ class TownRoomModel(
             return TownRoomModel(n, rooms, roads)
         }
 
-        /** Border tile facing only empty exterior = wall; facing a room/path = hallway. */
+        /**
+         * A border tile is a WALL when any side faces the outside — exterior
+         * empty ground, the board edge, OR a different room — so perimeters and
+         * the boundary between two rooms are always closed. The only thing that
+         * opens a wall (a doorway) is an adjacent hallway/road, per the spec
+         * "every border tile is a wall unless connected by a hallway".
+         */
         private fun isWall(
             x: Int, y: Int, self: Long,
             owner: Map<Int, Long>, roads: Set<Int>, n: Int,
         ): Boolean {
-            var facesEmpty = false
-            var facesHallway = false
+            var facesOuter = false // exterior empty, board edge, or a different room
+            var facesRoad = false
             for (d in DIRS) {
                 val nx = x + d[0]; val ny = y + d[1]
-                if (nx < 0 || ny < 0 || nx >= n || ny >= n) { facesEmpty = true; continue }
+                if (nx < 0 || ny < 0 || nx >= n || ny >= n) { facesOuter = true; continue }
                 val np = Footprint.pack(nx, ny)
                 val no = owner[np]
                 when {
-                    no == null -> if (np in roads) facesHallway = true else facesEmpty = true
-                    no != self -> facesHallway = true
+                    no == null -> if (np in roads) facesRoad = true else facesOuter = true
+                    no != self -> facesOuter = true // different room -> wall between them
                     // same room -> interior edge
                 }
             }
-            return facesEmpty && !facesHallway
+            return facesOuter && !facesRoad
         }
     }
 }
@@ -141,8 +147,9 @@ fun DrawScope.drawRooms(model: TownRoomModel, m: GridMapping, palette: TimeOfDay
     // Ground.
     drawRect(palette.ground, topLeft = Offset(m.originX, m.originY), size = Size(m.side, m.side))
 
-    // Grid (capped).
-    val lines = min(model.gridCells, 50)
+    // Grid — one line per actual cell so a drawn tile == one grid square
+    // (capping this below gridCells is what made each square look like 2x2 tiles).
+    val lines = model.gridCells
     val step = m.side / lines
     for (i in 0..lines) {
         val o = i * step
