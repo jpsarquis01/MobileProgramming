@@ -48,13 +48,12 @@ private data class GuideEntry(
 private val WallInk = Color(0xFF8A7A63)
 
 private val entries = listOf(
-    GuideEntry(GuideShape.SMALL_RECT, "Bathroom", "Square or rectangle, up to 4×4 tiles", Color(0xFFAFC9CC)),
-    GuideEntry(GuideShape.RECT, "Bedroom", "Square or rectangle, 5×5 to 7×7", Color(0xFFC9A9C4)),
-    GuideEntry(GuideShape.BIG_RECT, "Kitchen", "Square or rectangle, 8×8 to 9×9", Color(0xFFE6B566)),
-    GuideEntry(GuideShape.CIRCLE, "Common area", "Circle or oval, up to 9×9", Color(0xFFA9C58C)),
-    GuideEntry(GuideShape.TRIANGLE, "TV area", "Triangle, up to 9×9", Color(0xFF8E97B8)),
-    GuideEntry(GuideShape.BLOB, "Lounge", "Any irregular shape, up to 9×9", Color(0xFFD9C2A0)),
-    GuideEntry(GuideShape.FILL, "Garden", "Any shape, 10×10 or larger", Color(0xFF86B06A)),
+    GuideEntry(GuideShape.CIRCLE, "Common area", "Draw a circle or oval — any size", Color(0xFFA9C58C)),
+    GuideEntry(GuideShape.TRIANGLE, "TV area", "Draw a triangle — any size", Color(0xFF8E97B8)),
+    GuideEntry(GuideShape.SMALL_RECT, "Bathroom", "A small shape, up to 4×4 tiles", Color(0xFFAFC9CC)),
+    GuideEntry(GuideShape.RECT, "Bedroom", "A shape 5×5 to 7×7 tiles", Color(0xFFC9A9C4)),
+    GuideEntry(GuideShape.BIG_RECT, "Kitchen", "A shape 8×8 to 10×10 tiles", Color(0xFFE6B566)),
+    GuideEntry(GuideShape.BLOB, "Garden", "A large freeform area, 11×11 or bigger", Color(0xFF86B06A)),
     GuideEntry(GuideShape.THIN, "Doorway", "A thin or tiny rectangle", Color(0xFFB07A4E)),
     GuideEntry(GuideShape.LINE, "Hallway", "Switch to Hallway, then drag a line to connect rooms", Color(0xFFD8B98E)),
 )
@@ -71,8 +70,10 @@ fun RoomGuideDialog(onDismiss: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Text(
-                    "Draw a shape and its size + form decides the room. Bigger drawings " +
-                        "become gardens, so draw small for small rooms.",
+                    "The shape you draw decides the room. A circle or triangle always " +
+                        "makes the same room at any size; other shapes become rooms by " +
+                        "how many tiles they cover. Pinch to zoom so you can draw small " +
+                        "rooms on a big grid.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                 )

@@ -1,7 +1,10 @@
 package com.studio.gladetowns.feature.play
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculatePan
+import androidx.compose.foundation.gestures.calculateZoom
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,11 +19,15 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Undo
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.CenterFocusStrong
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -32,6 +39,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -174,6 +182,9 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
     val mapping = remember { GridMappingHolder() }
     val palette = state.timeOfDay.palette()
     var buildMode by remember { mutableStateOf(BuildMode.ROOM) }
+    // Zoom/pan baked into the GridMapping so drawing stays aligned when zoomed.
+    var scale by remember { mutableFloatStateOf(1f) }
+    var offset by remember { mutableStateOf(Offset.Zero) }
     // Wall/room analysis runs once per layout change, off the per-frame path.
     val model = remember(state.layout) { TownRoomModel.from(state.layout) }
 
@@ -191,12 +202,32 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
             modifier = Modifier
                 .fillMaxSize()
                 .padding(12.dp)
-                // Re-key on buildMode so the drag handler always sees the live mode.
+                // One finger draws; two fingers pinch-zoom + pan. Re-keyed on
+                // buildMode so the handler always sees the live mode.
                 .pointerInput(state.gridCells, buildMode) {
-                    detectDragGestures(
-                        onDragStart = { stroke.clear(); stroke.add(it) },
-                        onDrag = { change, _ -> stroke.add(change.position) },
-                        onDragEnd = {
+                    awaitEachGesture {
+                        val first = awaitFirstDown(requireUnconsumed = false)
+                        var multiTouch = false
+                        stroke.clear()
+                        stroke.add(first.position)
+                        while (true) {
+                            val event = awaitPointerEvent()
+                            val pressed = event.changes.filter { it.pressed }
+                            if (pressed.size >= 2) {
+                                if (!multiTouch) { multiTouch = true; stroke.clear() }
+                                val zoom = event.calculateZoom()
+                                val pan = event.calculatePan()
+                                if (zoom != 1f) scale = (scale * zoom).coerceIn(1f, 8f)
+                                offset += pan
+                                event.changes.forEach { it.consume() }
+                            } else if (!multiTouch && pressed.size == 1) {
+                                val change = pressed.first()
+                                stroke.add(change.position)
+                                change.consume()
+                            }
+                            if (event.changes.none { it.pressed }) break
+                        }
+                        if (!multiTouch) {
                             mapping.value?.let { m ->
                                 when (buildMode) {
                                     BuildMode.ROOM ->
@@ -207,10 +238,9 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
                                     }
                                 }
                             }
-                            stroke.clear()
-                        },
-                        onDragCancel = { stroke.clear() },
-                    )
+                        }
+                        stroke.clear()
+                    }
                 }
                 .pointerInput(Unit) {
                     detectTapGestures(
@@ -219,7 +249,7 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
                     )
                 },
         ) {
-            val m = GridMapping(state.gridCells, size.width, size.height)
+            val m = GridMapping(state.gridCells, size.width, size.height, scale, offset.x, offset.y)
             mapping.value = m
             drawRooms(model, m, palette)
             drawStroke(stroke, buildMode)
@@ -227,6 +257,22 @@ private fun BuildingContent(state: PlayUiState.Building, onEvent: (PlayEvent) ->
 
         // Animated lighting / atmosphere (isolated so it never re-runs drawRooms).
         AtmosphereOverlay(palette, Modifier.matchParentSize())
+
+        // Zoom controls (pinch works too); recenter resets zoom + pan.
+        Column(
+            modifier = Modifier.align(Alignment.CenterEnd).padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            FilledTonalIconButton(onClick = { scale = (scale * 1.25f).coerceAtMost(8f) }) {
+                Icon(Icons.Filled.Add, contentDescription = "Zoom in")
+            }
+            FilledTonalIconButton(onClick = { scale = (scale / 1.25f).coerceAtLeast(1f) }) {
+                Icon(Icons.Filled.Remove, contentDescription = "Zoom out")
+            }
+            FilledTonalIconButton(onClick = { scale = 1f; offset = Offset.Zero }) {
+                Icon(Icons.Filled.CenterFocusStrong, contentDescription = "Recenter")
+            }
+        }
 
         lastRoom?.let { label ->
             Surface(

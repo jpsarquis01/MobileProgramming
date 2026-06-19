@@ -10,11 +10,35 @@ render-time derivation).
   image assets) of the shape that makes it, plus its size rule. The rules are
   written to mirror `RoomClassifier`, so guide and gameplay never drift.
 
-> **Why your towns were all green:** a room's type is decided by the drawn
-> bounding box, and **anything 10×10 or larger becomes a Garden** (rendered
-> open, no walls). On a 50/100 grid a finger-drawn blob easily exceeds 10
-> tiles, so almost everything was a garden. Draw **small** shapes — or use the
-> 20×20 board — to get bathrooms/bedrooms/kitchens and see the wall textures.
+> **Why every town came out all-green (fixed):** the classifier used to check
+> size *before* shape (`≥10 tiles → Garden`), so on a 100×100 grid every
+> finger-drawn blob — huge by tile count — became a garden. It's now
+> **shape-first** (see below) and the Play screen supports **pinch-zoom**, so
+> you can zoom in and draw precise small rooms.
+
+## Shape-first room rules (revised)
+The room is decided by the *shape* you draw, then size only chooses among the
+rectangle-family rooms — so any drawing resolves to a usable room and "all
+gardens" can't happen by accident:
+
+| Draw this | You get | Size |
+|---|---|---|
+| Circle / oval | Common area | any size |
+| Triangle | TV area | any size |
+| Small shape | Bathroom | up to 4×4 |
+| Shape | Bedroom | 5×5–7×7 |
+| Shape | Kitchen | 8×8–10×10 |
+| Large freeform | Garden | 11×11+ |
+| Thin / tiny rectangle | Doorway | — |
+
+The old "irregular → Lounge" dead-end is gone: an irregular blob is just sized
+like a rectangle. `RoomType.LOUNGE` stays in the enum (unused) for save compat.
+
+## Pinch-zoom while drawing
+- Play's canvas: **one finger draws, two fingers pinch-zoom + pan**, plus
+  +/−/recenter buttons. Zoom is baked into `GridMapping` (not a graphicsLayer),
+  so finger position and tiles stay aligned at any zoom — essential for drawing
+  a 4-tile bathroom on a 100×100 board.
 
 ## 2. Hallways (draw a line to connect rooms)
 - A **Room / Hallway** toggle sits above the time bar in Play.

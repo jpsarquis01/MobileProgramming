@@ -33,35 +33,36 @@ object RoomClassifier {
     }
 
     /**
-     * Deterministic, total classification by shape + bounding-box size.
-     * `s` is the larger side. Bands are made non-overlapping and exhaustive:
+     * Deterministic classification — SHAPE first, then size. A circle is always
+     * a common area and a triangle always a TV area (at any size), so those
+     * rooms are reliable to make. Everything else — rectangles AND irregular
+     * blobs — becomes a room sized by its bounding box, so any drawing resolves
+     * to a usable room instead of dead-ending on "irregular":
      *
-     *  - GARDEN      any shape, s ≥ 10                       (drawn 10×10 or more)
-     *  - DOOR        rectangle, thin (min side ≤ 1) or s ≤ 2 (small rectangle)
-     *  - BATHROOM    rectangle, s ≤ 4
-     *  - BEDROOM     rectangle, 5 ≤ s ≤ 7                    ("no more than 7")
-     *  - KITCHEN     rectangle, 8 ≤ s ≤ 9                    (10 → garden)
-     *  - COMMON_AREA circle/oval, s ≤ 9
-     *  - TV_AREA     triangle, s ≤ 9
-     *  - LOUNGE      irregular / other, s ≤ 9               (fills the unspecified slot)
+     *  - COMMON_AREA circle/oval, any size
+     *  - TV_AREA     triangle, any size
+     *  - DOOR        thin (min side ≤ 1) or tiny (s ≤ 2)
+     *  - BATHROOM    s ≤ 4
+     *  - BEDROOM     5 ≤ s ≤ 7
+     *  - KITCHEN     8 ≤ s ≤ 10
+     *  - GARDEN      s ≥ 11   (a large freeform area)
+     *
+     * `s` is the larger side. Note size only decides among the rectangle-family
+     * rooms; to control which one, draw smaller (use pinch-zoom on big grids).
      */
     fun classify(archetype: StructureArchetype, w: Int, h: Int): RoomType {
         val s = max(w, h)
         val minSide = min(w, h)
-        val isRect = archetype == StructureArchetype.HOUSE ||
-            archetype == StructureArchetype.WAREHOUSE ||
-            archetype == StructureArchetype.L_SHAPE
         val isCircle = archetype == StructureArchetype.TOWER
         val isTriangle = archetype == StructureArchetype.CHAPEL
         return when {
-            s >= 10 -> RoomType.GARDEN
-            isRect && (minSide <= 1 || s <= 2) -> RoomType.DOOR
-            isRect && s <= 4 -> RoomType.BATHROOM
-            isRect && s <= 7 -> RoomType.BEDROOM
-            isRect -> RoomType.KITCHEN
             isCircle -> RoomType.COMMON_AREA
             isTriangle -> RoomType.TV_AREA
-            else -> RoomType.LOUNGE
+            minSide <= 1 || s <= 2 -> RoomType.DOOR
+            s <= 4 -> RoomType.BATHROOM
+            s <= 7 -> RoomType.BEDROOM
+            s <= 10 -> RoomType.KITCHEN
+            else -> RoomType.GARDEN
         }
     }
 

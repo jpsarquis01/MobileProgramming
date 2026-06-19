@@ -26,18 +26,24 @@ class RoomTypeTest {
     @Test fun `large rectangle is a kitchen`() =
         assertEquals(RoomType.KITCHEN, RoomClassifier.classify(longRect, 9, 4))
 
-    @Test fun `circle is a common area`() =
+    @Test fun `circle is a common area at any size`() {
         assertEquals(RoomType.COMMON_AREA, RoomClassifier.classify(circle, 6, 6))
+        assertEquals(RoomType.COMMON_AREA, RoomClassifier.classify(circle, 12, 12))
+    }
 
-    @Test fun `triangle is a tv area`() =
+    @Test fun `triangle is a tv area at any size`() {
         assertEquals(RoomType.TV_AREA, RoomClassifier.classify(triangle, 5, 8))
+        assertEquals(RoomType.TV_AREA, RoomClassifier.classify(triangle, 12, 3))
+    }
 
-    @Test fun `irregular fills the lounge slot`() =
-        assertEquals(RoomType.LOUNGE, RoomClassifier.classify(irregular, 7, 4))
+    @Test fun `irregular shapes still become a sized room`() {
+        // No more "irregular" dead-end: an irregular blob sizes like a rectangle.
+        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(irregular, 7, 4))
+        assertEquals(RoomType.GARDEN, RoomClassifier.classify(irregular, 15, 15))
+    }
 
-    @Test fun `anything 10 or larger is a garden`() {
-        assertEquals(RoomType.GARDEN, RoomClassifier.classify(circle, 10, 10))
-        assertEquals(RoomType.GARDEN, RoomClassifier.classify(triangle, 12, 3))
+    @Test fun `a large rectangle becomes a garden`() {
+        assertEquals(RoomType.KITCHEN, RoomClassifier.classify(rect, 10, 10))
         assertEquals(RoomType.GARDEN, RoomClassifier.classify(rect, 11, 11))
     }
 

@@ -20,12 +20,25 @@ import kotlin.math.min
  * classification is precomputed once in [TownRoomModel] (off the redraw path).
  */
 
-/** Screen <-> grid mapping for a square board centred in the canvas. */
-class GridMapping(val cells: Int, viewW: Float, viewH: Float) {
-    val side = min(viewW, viewH)
+/**
+ * Screen <-> grid mapping for a square board centred in the canvas. [scale] and
+ * [panX]/[panY] bake zoom/pan straight into the mapping (instead of a
+ * graphicsLayer), so finger coordinates and drawn tiles stay perfectly aligned
+ * while drawing zoomed-in.
+ */
+class GridMapping(
+    val cells: Int,
+    viewW: Float,
+    viewH: Float,
+    scale: Float = 1f,
+    panX: Float = 0f,
+    panY: Float = 0f,
+) {
+    private val baseSide = min(viewW, viewH)
+    val side = baseSide * scale
     val cellPx = side / cells
-    val originX = (viewW - side) / 2f
-    val originY = (viewH - side) / 2f
+    val originX = (viewW - side) / 2f + panX
+    val originY = (viewH - side) / 2f + panY
 
     fun toGrid(p: Offset): Pair<Float, Float> =
         ((p.x - originX) / cellPx).coerceIn(0f, cells.toFloat()) to
