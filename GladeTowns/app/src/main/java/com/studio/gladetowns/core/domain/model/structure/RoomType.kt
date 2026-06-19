@@ -14,6 +14,12 @@ enum class RoomType { BATHROOM, BEDROOM, KITCHEN, COMMON_AREA, TV_AREA, LOUNGE, 
 
 object RoomClassifier {
 
+    // Size bands by the bounding box's larger side, in tiles. Scaled up so rooms
+    // are comfortable to draw on a 100x100 board (tweak here to rebalance).
+    const val BATHROOM_MAX = 8
+    const val BEDROOM_MAX = 14
+    const val KITCHEN_MAX = 22
+
     /** (width, height) of the footprint's bounding box, in cells. */
     fun boundingBox(footprint: List<Int>): Pair<Int, Int> {
         if (footprint.isEmpty()) return 0 to 0
@@ -42,10 +48,10 @@ object RoomClassifier {
      *  - COMMON_AREA circle/oval, any size
      *  - TV_AREA     triangle, any size
      *  - DOOR        thin (min side ≤ 1) or tiny (s ≤ 2)
-     *  - BATHROOM    s ≤ 4
-     *  - BEDROOM     5 ≤ s ≤ 7
-     *  - KITCHEN     8 ≤ s ≤ 10
-     *  - GARDEN      s ≥ 11   (a large freeform area)
+     *  - BATHROOM    s ≤ 8
+     *  - BEDROOM     9 ≤ s ≤ 14
+     *  - KITCHEN     15 ≤ s ≤ 22
+     *  - GARDEN      s ≥ 23   (a large freeform area)
      *
      * `s` is the larger side. Note size only decides among the rectangle-family
      * rooms; to control which one, draw smaller (use pinch-zoom on big grids).
@@ -59,9 +65,9 @@ object RoomClassifier {
             isCircle -> RoomType.COMMON_AREA
             isTriangle -> RoomType.TV_AREA
             minSide <= 1 || s <= 2 -> RoomType.DOOR
-            s <= 4 -> RoomType.BATHROOM
-            s <= 7 -> RoomType.BEDROOM
-            s <= 10 -> RoomType.KITCHEN
+            s <= BATHROOM_MAX -> RoomType.BATHROOM
+            s <= BEDROOM_MAX -> RoomType.BEDROOM
+            s <= KITCHEN_MAX -> RoomType.KITCHEN
             else -> RoomType.GARDEN
         }
     }

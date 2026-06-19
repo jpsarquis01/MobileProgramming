@@ -16,15 +16,15 @@ class RoomTypeTest {
     private val irregular = StructureArchetype.FOLLY
 
     @Test fun `small rectangle is a bathroom`() =
-        assertEquals(RoomType.BATHROOM, RoomClassifier.classify(rect, 3, 3))
+        assertEquals(RoomType.BATHROOM, RoomClassifier.classify(rect, 6, 6))
 
-    @Test fun `mid rectangle is a bedroom and never exceeds 7`() {
-        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(rect, 5, 5))
-        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(rect, 7, 6))
+    @Test fun `mid rectangle is a bedroom`() {
+        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(rect, 10, 10))
+        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(rect, 14, 12))
     }
 
     @Test fun `large rectangle is a kitchen`() =
-        assertEquals(RoomType.KITCHEN, RoomClassifier.classify(longRect, 9, 4))
+        assertEquals(RoomType.KITCHEN, RoomClassifier.classify(longRect, 20, 8))
 
     @Test fun `circle is a common area at any size`() {
         assertEquals(RoomType.COMMON_AREA, RoomClassifier.classify(circle, 6, 6))
@@ -38,13 +38,13 @@ class RoomTypeTest {
 
     @Test fun `irregular shapes still become a sized room`() {
         // No more "irregular" dead-end: an irregular blob sizes like a rectangle.
-        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(irregular, 7, 4))
-        assertEquals(RoomType.GARDEN, RoomClassifier.classify(irregular, 15, 15))
+        assertEquals(RoomType.BEDROOM, RoomClassifier.classify(irregular, 12, 10))
+        assertEquals(RoomType.GARDEN, RoomClassifier.classify(irregular, 30, 30))
     }
 
     @Test fun `a large rectangle becomes a garden`() {
-        assertEquals(RoomType.KITCHEN, RoomClassifier.classify(rect, 10, 10))
-        assertEquals(RoomType.GARDEN, RoomClassifier.classify(rect, 11, 11))
+        assertEquals(RoomType.KITCHEN, RoomClassifier.classify(rect, 22, 22))
+        assertEquals(RoomType.GARDEN, RoomClassifier.classify(rect, 23, 23))
     }
 
     @Test fun `thin or tiny rectangle is a doorway`() {

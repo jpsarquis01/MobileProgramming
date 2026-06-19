@@ -50,10 +50,10 @@ private val WallInk = Color(0xFF8A7A63)
 private val entries = listOf(
     GuideEntry(GuideShape.CIRCLE, "Common area", "Draw a circle or oval — any size", Color(0xFFA9C58C)),
     GuideEntry(GuideShape.TRIANGLE, "TV area", "Draw a triangle — any size", Color(0xFF8E97B8)),
-    GuideEntry(GuideShape.SMALL_RECT, "Bathroom", "A small shape, up to 4×4 tiles", Color(0xFFAFC9CC)),
-    GuideEntry(GuideShape.RECT, "Bedroom", "A shape 5×5 to 7×7 tiles", Color(0xFFC9A9C4)),
-    GuideEntry(GuideShape.BIG_RECT, "Kitchen", "A shape 8×8 to 10×10 tiles", Color(0xFFE6B566)),
-    GuideEntry(GuideShape.BLOB, "Garden", "A large freeform area, 11×11 or bigger", Color(0xFF86B06A)),
+    GuideEntry(GuideShape.SMALL_RECT, "Bathroom", "A small shape, up to 8×8 tiles", Color(0xFFAFC9CC)),
+    GuideEntry(GuideShape.RECT, "Bedroom", "A shape 9×9 to 14×14 tiles", Color(0xFFC9A9C4)),
+    GuideEntry(GuideShape.BIG_RECT, "Kitchen", "A shape 15×15 to 22×22 tiles", Color(0xFFE6B566)),
+    GuideEntry(GuideShape.BLOB, "Garden", "A large freeform area, 23×23 or bigger", Color(0xFF86B06A)),
     GuideEntry(GuideShape.THIN, "Doorway", "A thin or tiny rectangle", Color(0xFFB07A4E)),
     GuideEntry(GuideShape.LINE, "Hallway", "Switch to Hallway, then drag a line to connect rooms", Color(0xFFD8B98E)),
 )

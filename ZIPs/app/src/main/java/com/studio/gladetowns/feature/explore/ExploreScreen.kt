@@ -129,7 +129,7 @@ private fun ExploreContent(s: ExploreUiState.Ready, onEvent: (ExploreEvent) -> U
             ) {
                 val m = GridMapping(s.layout.gridCells, size.width, size.height)
                 mapping.value = m
-                drawRooms(model, m, palette)
+                drawRooms(model, m, palette, decorate = true)
                 s.selected?.let { drawSelection(it, m) }
             }
 

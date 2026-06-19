@@ -143,7 +143,12 @@ private fun floorColor(type: RoomType): Color = when (type) {
 fun DrawScope.drawTown(layout: TownLayout, m: GridMapping, palette: TimeOfDayPalette) =
     drawRooms(TownRoomModel.from(layout), m, palette)
 
-fun DrawScope.drawRooms(model: TownRoomModel, m: GridMapping, palette: TimeOfDayPalette) {
+fun DrawScope.drawRooms(
+    model: TownRoomModel,
+    m: GridMapping,
+    palette: TimeOfDayPalette,
+    decorate: Boolean = false,
+) {
     // Ground.
     drawRect(palette.ground, topLeft = Offset(m.originX, m.originY), size = Size(m.side, m.side))
 
@@ -163,14 +168,30 @@ fun DrawScope.drawRooms(model: TownRoomModel, m: GridMapping, palette: TimeOfDay
         drawRect(palette.road, topLeft = m.cellTopLeft(x, y), size = Size(m.cellPx, m.cellPx))
     }
 
-    // Floors first, then walls on top so the wall ring reads cleanly.
+    // Floors first, then (in dioramas) furniture, then walls on top so the wall
+    // ring reads cleanly over everything.
     for (room in model.rooms) {
         val floor = floorColor(room.type)
         for (c in room.cells) drawFloorTile(room.type, floor, m.cellTopLeft(c.x, c.y), m.cellPx)
     }
+    if (decorate) for (room in model.rooms) drawRoomFurniture(room, m)
     for (room in model.rooms) {
         for (c in room.cells) if (c.wall) drawWallTile(m.cellTopLeft(c.x, c.y), m.cellPx, c.y)
     }
+}
+
+/** Lay one matched furniture piece inside a room's interior (non-wall) cells. */
+private fun DrawScope.drawRoomFurniture(room: RoomRender, m: GridMapping) {
+    val interior = room.cells.filter { !it.wall }.ifEmpty { room.cells }
+    if (interior.isEmpty()) return
+    var minX = Int.MAX_VALUE; var minY = Int.MAX_VALUE
+    var maxX = Int.MIN_VALUE; var maxY = Int.MIN_VALUE
+    for (c in interior) {
+        minX = min(minX, c.x); maxX = max(maxX, c.x)
+        minY = min(minY, c.y); maxY = max(maxY, c.y)
+    }
+    val tl = m.cellTopLeft(minX, minY)
+    drawFurniture(room.type, tl.x, tl.y, (maxX - minX + 1) * m.cellPx, (maxY - minY + 1) * m.cellPx)
 }
 
 private fun DrawScope.drawFloorTile(type: RoomType, base: Color, tl: Offset, c: Float) {
